@@ -5,7 +5,13 @@
  * @link https://brocode.at
  */
 -->
-<div class="data-grid-cell-content" text="$col.getLabel($row())"></div>
-<!-- ko if: $row().origin_source -->
-<span class="brocode-config-explorer-origin-icon" style="cursor: help; margin-left: 4px;" attr="{title: $col.getOriginTooltip($row())}">&#9432;</span>
-<!-- /ko -->
+<div class="brocode-config-explorer-value">
+    <div class="data-grid-cell-content" text="$col.getLabel($row())"></div>
+    <!-- ko if: $row().origin_source -->
+    <span class="brocode-config-explorer-origin" tabindex="0"
+          attr="{'aria-label': $col.getOriginTooltip($row())}">
+        <span class="brocode-config-explorer-origin-icon" aria-hidden="true">i</span>
+        <span class="brocode-config-explorer-origin-tip" text="$col.getOriginTooltip($row())"></span>
+    </span>
+    <!-- /ko -->
+</div>

@@ -19,15 +19,19 @@ bin/magento setup:upgrade
 - No write path anywhere. There is no save, no delete, and no `POST`/`PUT`/`DELETE`
   route; the resource model binds to the native table for reads only.
 
-![Config Data Explorer grid: path, scope, scope ID, value, encrypted and origin columns, with an encrypted row masked](docs/config-grid.png)
+![Config Data Explorer grid showing three rows under general/store_information: a store-view override with Origin Database, and two default-scope rows with Origin env.php and config.php, one with its origin hint open](docs/config-grid.png)
 
-*Stock 2.4.8-p5. `carriers/usps/password` is flagged Encrypted and shows `***`; Origin marks each row's real source.*
+*Stock 2.4.8-p5, filtered to one path prefix at a store view. `city` is a real store-view row; `name` and `phone` look like ordinary default rows but are shadowed by `env.php` and `config.php`. Origin names the file, and the hint names the database value it is shadowing.*
 
 ## Why the grid never reveals
 
 Redaction in the grid is unconditional, even for a user who holds the reveal ACL.
 Plaintext is available only through an explicit REST call, which leaves a request
 trace, rather than through a checkbox that stays on in a shared admin session.
+
+![Config Data Explorer grid filtered to carriers/usps, showing carriers/usps/password masked as three asterisks with the Encrypted column reading Yes](docs/encrypted-masked.png)
+
+*`carriers/usps/password` shows `***` with Encrypted `Yes`. There is no reveal control on this screen for any role.*
 
 ## Access model
 

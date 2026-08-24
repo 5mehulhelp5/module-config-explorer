@@ -1,0 +1,97 @@
+/**
+ * Copyright (C) 2026 Benjamin Rosenberger <bensch.rosenberger@gmail.com>
+ * @license MIT
+ * @link https://brocode.at
+ */
+
+/* Keeps the origin hint on the value's own line instead of wrapping below it. */
+.brocode-config-explorer-value {
+    display: flex;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+/*
+ * The admin grid stretches cell content to the full column width, which would
+ * park the hint against the far edge instead of beside the value it explains.
+ */
+.brocode-config-explorer-value .data-grid-cell-content {
+    flex: 0 1 auto;
+    width: auto;
+    min-width: 0;
+}
+
+/*
+ * Origin hint for a shadowed row. Replaces the native title attribute: that one
+ * is unreachable by keyboard, never shown on touch, and this hint is the whole
+ * reason the Origin column exists.
+ */
+.brocode-config-explorer-origin {
+    position: relative;
+    display: inline-block;
+    flex: 0 0 auto;
+    cursor: help;
+}
+
+/*
+ * Drawn in CSS rather than set as a glyph: the circled-i characters (U+24D8,
+ * U+1F6C8) are missing from common server and Linux font stacks and render as
+ * tofu there.
+ */
+.brocode-config-explorer-origin-icon {
+    display: inline-block;
+    width: 1.4rem;
+    height: 1.4rem;
+    border: 1px solid #007bdb;
+    border-radius: 50%;
+    color: #007bdb;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1rem;
+    font-style: italic;
+    font-weight: 700;
+    line-height: 1.3rem;
+    text-align: center;
+}
+
+.brocode-config-explorer-origin:focus {
+    outline: 1px dotted #007bdb;
+    outline-offset: 2px;
+}
+
+.brocode-config-explorer-origin-tip {
+    display: none;
+    position: absolute;
+    z-index: 100;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 7px;
+    padding: 6px 10px;
+    max-width: 32rem;
+    width: max-content;
+    background: #303030;
+    color: #fff;
+    border-radius: 2px;
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 1.4;
+    white-space: normal;
+    word-break: break-word;
+    text-align: left;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .3);
+}
+
+.brocode-config-explorer-origin-tip:after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border: 5px solid transparent;
+    border-top-color: #303030;
+}
+
+.brocode-config-explorer-origin:hover .brocode-config-explorer-origin-tip,
+.brocode-config-explorer-origin:focus .brocode-config-explorer-origin-tip {
+    display: block;
+}
