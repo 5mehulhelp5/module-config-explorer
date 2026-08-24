@@ -2,6 +2,7 @@
     "name": "brocode/module-config-explorer",
     "description": "Read-only Magento 2 admin grid and REST API over core_config_data. Encrypted values are redacted by default in both; plaintext reveal is REST-only and gated behind a system toggle, an ACL resource, and an explicit request flag.",
     "type": "magento2-module",
+    "version": "1.1.0",
     "license": "MIT",
     "homepage": "https://github.com/brosenberger/module-config-explorer",
     "keywords": [
