@@ -19,6 +19,10 @@ bin/magento setup:upgrade
 - No write path anywhere. There is no save, no delete, and no `POST`/`PUT`/`DELETE`
   route; the resource model binds to the native table for reads only.
 
+![Config Data Explorer grid: path, scope, scope ID, value, encrypted and origin columns, with an encrypted row masked](docs/config-grid.png)
+
+*Stock 2.4.8-p5. `carriers/usps/password` is flagged Encrypted and shows `***`; Origin marks each row's real source.*
+
 ## Why the grid never reveals
 
 Redaction in the grid is unconditional, even for a user who holds the reveal ACL.
@@ -31,7 +35,7 @@ Three gates, all required, checked in this order:
 
 | Gate | Where | Default |
 |---|---|---|
-| `brocode_config_explorer/general/allow_encrypted_reveal` | System Config, site-wide kill switch | No |
+| `brocode_config_explorer/general/allow_encrypted_reveal` | **Stores → Configuration → Services → BroCode Config Data Explorer** | No |
 | `BroCode_ConfigExplorer::config_view_encrypted` | ACL resource | Granted to no role |
 | `revealEncrypted=true` | REST request parameter | `false` |
 
@@ -39,6 +43,10 @@ The toggle is checked before the ACL, so a caller who holds the resource on an
 installation with the switch off is refused. Asking for plaintext without being
 allowed it raises `AuthorizationException` — a caller never receives a silently
 redacted response when they explicitly asked to see the real value.
+
+![The module's setting under the Services tab](docs/settings-under-services.png)
+
+*The setting lives under Services, beside Magento Web API and OAuth, rather than in a vendor-specific top-level tab.*
 
 ## REST usage
 
