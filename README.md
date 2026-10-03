@@ -104,3 +104,7 @@ The encrypted-path resolver is covered by a logic test over the merged-structure
 (exact class, subclass, leading backslash, `config_path` override, nested groups,
 unloadable class, empty structure). The grid, the REST route, and the ACL wiring have
 not yet been exercised against a running Magento instance.
+
+---
+
+Docs, background and related modules: [brocode.at](https://brocode.at/modules/module-config-explorer/)
